@@ -6,7 +6,7 @@ splitting_params:
   test_size: 0.2
   random_state: 1984
 preprocessing_params:
-  scaler: "None"
+  scaler: null
 train_params:
   model_type: "RandomForestClassifier"
 feature_params:

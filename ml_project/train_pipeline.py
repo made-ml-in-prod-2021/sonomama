@@ -77,10 +77,9 @@ def train_pipeline(training_pipeline_params: TrainingPipelineParams):
         json.dump(metrics, metric_file)
         logger.info(f"metrics dumped")
 
-    path_to_model = save_model(model,
-                               training_pipeline_params.output_model_path)
+    save_model(model, training_pipeline_params.output_model_path)
 
-    return path_to_model, metrics
+    return metrics
 
 
 @click.command()

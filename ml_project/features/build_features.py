@@ -18,6 +18,7 @@ def build_categorical_pipeline() -> Pipeline:
             ("ohe", OneHotEncoder()),
         ]
     )
+
     return categorical_pipeline
 
 
@@ -26,16 +27,21 @@ def build_numerical_pipeline(preprocessing_params: PreprocessingParams) -> Pipel
          ("impute", SimpleImputer(missing_values=np.nan,
                                   strategy="median"))]
     scaler_str = preprocessing_params.scaler
-    if scaler_str != "None":
+
+    if scaler_str is not None:
         if scaler_str == "StandardScaler":
             processing.append(("scaler", StandardScaler()))
         elif scaler_str == "MinMaxScaler":
             processing.append(("scaler", MinMaxScaler()))
+
         elif scaler_str == "RobustScaler":
             processing.append(("scaler", RobustScaler()))
+
         else:
             raise NotImplementedError()
+
     num_pipeline = Pipeline(processing)
+
     return num_pipeline
 
 
@@ -56,13 +62,16 @@ def build_transformer(params: FeatureParams,
 
         ]
     )
+
     return transformer
 
 
 def transform_features(transformer: ColumnTransformer, df: pd.DataFrame) -> pd.DataFrame:
+
     return pd.DataFrame(transformer.transform(df))
 
 
 def get_target(df: pd.DataFrame, params: FeatureParams) -> pd.Series:
     target = df[params.target_col]
+
     return target

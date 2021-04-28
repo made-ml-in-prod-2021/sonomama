@@ -17,6 +17,7 @@ def train_model(
         features: pd.DataFrame,
         target: pd.Series,
         train_params: TrainingParams) -> SklearnClassifier:
+
     if train_params.model_type == "LogisticRegression":
         model = LogisticRegression(
             penalty="l1", solver="liblinear"
@@ -26,7 +27,9 @@ def train_model(
                                        random_state=train_params.random_state)
     else:
         raise NotImplementedError()
+
     model.fit(features, target)
+
     return model
 
 
@@ -34,12 +37,14 @@ def predict(
         model: SklearnClassifier,
         features: pd.DataFrame) -> np.ndarray:
     predicted = model.predict(features)
+
     return predicted
 
 
 def evaluate_model(
         predicted: np.ndarray,
         target: pd.Series) -> Dict[str, float]:
+
     return {
         "roc auc": roc_auc_score(target, predicted),
         "f1": f1_score(target, predicted),
@@ -48,7 +53,7 @@ def evaluate_model(
 
 
 def save_model(model: SklearnClassifier,
-               output: str) -> str:
+               output: str):
     with open(output, "wb") as f:
         pickle.dump(model, f)
-    return output
+

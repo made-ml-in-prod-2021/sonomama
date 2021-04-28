@@ -1,7 +1,6 @@
 from collections import defaultdict, OrderedDict
 from typing import List
 import numpy as np
-import random
 import pandas as pd
 import pytest
 from faker import Faker
@@ -90,21 +89,24 @@ def fake_data(data, size=FAKE_DATA_SIZE):
 
     df_fake = pd.DataFrame(fake_data)
     df_fake = add_nans(df_fake, cols=["age", "thal", "oldpeak"])
-    assert df_fake.isna().sum().sum() > 0, \
-        "fake data does not have NaNs"
 
     return df_fake
 
 
-def test_load_dataset(fake_data):
+def test_can_load_dataset(fake_data):
     assert len(fake_data) == 300
+    assert fake_data.isna().sum().sum() > 0, \
+        "fake data does not have NaNs"
     assert TARGET_COL in fake_data.keys(), \
-        "target columns is missing from the dataframe"
+        "target columns is missing from the fake data"
 
 
-def test_split_dataset(fake_data):
+def test_can_split_dataset(fake_data):
     test_size = 0.2
     splitting_params = SplittingParams(random_state=1, test_size=test_size,)
     train, test = split_train_test_data(fake_data, splitting_params)
-    assert train.shape[0] == FAKE_DATA_SIZE * (1 - test_size)
-    assert test.shape[0] == FAKE_DATA_SIZE * test_size
+
+    assert train.shape[0] == FAKE_DATA_SIZE * (1 - test_size), \
+            "wrong train shape"
+    assert test.shape[0] == FAKE_DATA_SIZE * test_size, \
+            "wrong test shape"

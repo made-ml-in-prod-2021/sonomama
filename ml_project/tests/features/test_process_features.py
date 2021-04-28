@@ -33,7 +33,7 @@ def preprocessing_params() -> PreprocessingParams:
     return params
 
 
-def test_transform_features(fake_data,
+def test_can_transform_features(fake_data,
                             feature_params):
     for scaler in ["StandardScaler", "MinMaxScaler"]:
         prcs_params = PreprocessingParams(scaler=scaler)
@@ -43,15 +43,25 @@ def test_transform_features(fake_data,
 
         numerical_features = features.iloc[:, : len(NUMERICAL)]
         if scaler == "StandardScaler":
-            assert np.allclose(numerical_features.mean(axis=0), 0, atol=1e-1)
-            assert np.allclose(numerical_features.std(axis=0), 1, atol=1e-1)
+            assert np.allclose(numerical_features.mean(axis=0), 0, atol=1e-1), \
+                "mean of scaled features not 0"
+            assert np.allclose(numerical_features.std(axis=0), 1, atol=1e-1), \
+                "std of scaled features not 1"
         elif scaler == "MinMaxScaler":
-            assert np.all(abs(numerical_features) <= 1)
-        assert features.isna().sum().sum() == 0
-        assert features.shape[0] == fake_data.shape[0]
-        assert features.shape[1] > fake_data.shape[1]
+            assert np.all(abs(numerical_features) <= 1), \
+                "scaled features are outside of [-1, 1] range"
+
+        assert features.isna().sum().sum() == 0, \
+            "NaNs are present after transform"
+        assert features.shape[0] == fake_data.shape[0], \
+            "features must contain the same number of rows as original data"
+        assert features.shape[1] > fake_data.shape[1], \
+            "categorical features were not one hot encoded"
 
 
-def test_get_target(fake_data, feature_params):
+def test_can_get_target(fake_data, feature_params):
     target = get_target(fake_data, feature_params)
-    assert set(np.unique(target)) == {0, 1}
+    target_vals = set(np.unique(target))
+
+    assert target_vals == {0, 1}, \
+        f"target variable contains unexpected values {target_vals}"

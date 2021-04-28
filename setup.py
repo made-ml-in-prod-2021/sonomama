@@ -8,7 +8,7 @@ setup(
     author="Anna Goremykina",
     install_requires=[
         "click==7.1.2",
-        "python-dotenv>=0.5.1",
+        "python-dotenv>=0.17.0",
         "scikit-learn==0.24.1",
         "dataclasses==0.8",
         "pyyaml==3.11",
