@@ -1,11 +1,11 @@
 import numpy as np
 import pytest
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from ml_project.params import FeatureParams, PreprocessingParams
-from ml_project.features import (build_transformer,
+from ml_pipeline.params import FeatureParams, PreprocessingParams
+from ml_pipeline.features import (build_transformer,
                                  transform_features,
                                  get_target)
-from ml_project.tests.data import fake_data, data
+from tests.data import fake_data, data
 
 
 CATEGORICAL = ["sex", "cp", "fbs", "restecg", "exang", "slope", "ca", "thal"]

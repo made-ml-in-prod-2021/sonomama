@@ -1,7 +1,7 @@
 import os
 
-from ml_project.train_pipeline import train_pipeline
-from ml_project.params import read_training_pipeline_params
+from ml_pipeline.train_pipeline import train_pipeline
+from ml_pipeline.params import read_training_pipeline_params
 
 CONFIG_PATH = "ml_project/tests/models/test_config.yaml"
 

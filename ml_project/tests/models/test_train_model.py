@@ -5,14 +5,14 @@ from sklearn.ensemble import RandomForestClassifier
 import pickle
 from py._path.local import LocalPath
 
-from ml_project.tests.data import fake_data, data
-from ml_project.tests.features import feature_params, preprocessing_params
-from ml_project.features import (build_transformer,
+from tests.data import fake_data, data
+from tests.features import feature_params, preprocessing_params
+from ml_pipeline.features import (build_transformer,
                                  transform_features,
                                  get_target)
-from ml_project.params import TrainingParams
+from ml_pipeline.params import TrainingParams
 
-from ml_project.models.utils import (
+from ml_pipeline.models.utils import (
     train_model,
     predict,
     save_model

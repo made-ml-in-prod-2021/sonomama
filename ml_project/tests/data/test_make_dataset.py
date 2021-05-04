@@ -5,8 +5,8 @@ import pandas as pd
 import pytest
 from faker import Faker
 
-from ml_project.data.make_dataset import read_data, split_train_test_data
-from ml_project.params import SplittingParams
+from ml_pipeline.data.make_dataset import read_data, split_train_test_data
+from ml_pipeline.params import SplittingParams
 
 
 DATASET_PATH = "ml_project/data/raw/heart.csv"

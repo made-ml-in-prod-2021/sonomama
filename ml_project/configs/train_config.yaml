@@ -1,7 +1,7 @@
-logging_config_path: "ml_project/configs/logging.conf.yml"
-input_data_path: "ml_project/data/raw/heart.csv"
-output_model_path: "ml_project/models/model.pkl"
-metric_path: "ml_project/models/metrics.json"
+logging_config_path: "configs/logging.conf.yml"
+input_data_path: "raw_data/heart.csv"
+output_model_path: "ml_pipeline/models/model.pkl"
+metric_path: "ml_pipeline/models/metrics.json"
 splitting_params:
   test_size: 0.2
   random_state: 1984

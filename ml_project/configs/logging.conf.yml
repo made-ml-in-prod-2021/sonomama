@@ -22,6 +22,7 @@ loggers:
     level: DEBUG
     handlers: [file_handler]
     propagate: yes
+
 root:
   level: DEBUG
   handlers: [stream_handler]
