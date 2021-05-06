@@ -1,12 +1,12 @@
-logging_config_path: "ml_project/tests/logging.conf.yml"
-input_data_path: "ml_project/tests/data/fake.csv"
-output_model_path: "ml_project/tests/models/model.pkl"
-metric_path: "ml_project/tests/models/metrics.json"
+logging_config_path: "tests/logging.conf.yml"
+input_data_path: "tests/data/fake.csv"
+output_model_path: "tests/models/model.pkl"
+metric_path: "tests/models/metrics.json"
 splitting_params:
-  test_size: 0.3
+  test_size: 0.25
   random_state: 19
 preprocessing_params:
-  scaler: "RobustScaler"
+  scaler: "true"
 train_params:
   model_type: "LogisticRegression"
 feature_params:

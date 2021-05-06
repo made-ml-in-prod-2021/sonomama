@@ -1,3 +1,3 @@
-from .test_make_dataset import data, fake_data
+from .test_make_dataset import DATASET_PATH, FAKE_DATA_SIZE
 
-__all__ = ["data", "fake_data"]
+__all__ = ["DATASET_PATH", "FAKE_DATA_SIZE"]
