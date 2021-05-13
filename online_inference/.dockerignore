@@ -1,0 +1,10 @@
+.pytest_cache
+.gitignore
+.dockerignore
+data
+tests
+Dockerfile
+request.py
+README.md
+__pycache__
+
