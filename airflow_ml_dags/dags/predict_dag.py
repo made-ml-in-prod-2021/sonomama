@@ -31,13 +31,6 @@ with DAG(
         retries=2
     )
 
-    wait_for_target_data = FileSensor(
-        task_id="wait-target-data",
-        filepath="data/raw/{{ ds }}/target.csv",
-        poke_interval=5,
-        retries=2
-    )
-
     wait_for_model = FileSensor(
         task_id="wait-model",
         filepath="{{ var.value.MODEL }}/model.pkl",
@@ -54,4 +47,4 @@ with DAG(
         volumes=[f"{DATA_VOLUMES}:/data"]
     )
 
-    [wait_for_raw_data, wait_for_target_data, wait_for_model] >> predict
+    [wait_for_raw_data, wait_for_model] >> predict
