@@ -36,33 +36,33 @@ with DAG(
     )
 
     preprocess = DockerOperator(
+        task_id="docker-airflow-preprocess",
         image="airflow-preprocess",
         command="--input-dir /data/raw/{{ ds }} --output-dir /data/processed/{{ ds }}",
-        task_id="docker-airflow-preprocess",
         do_xcom_push=False,
         volumes=[f"{DATA_VOLUMES}:/data"]
     )
 
     split = DockerOperator(
+        task_id="docker-airflow-split",
         image="airflow-split",
         command="--input-dir /data/processed/{{ ds }} --output-dir /data/processed/{{ ds }}",
-        task_id="docker-airflow-split",
         do_xcom_push=False,
         volumes=[f"{DATA_VOLUMES}:/data"]
     )
 
     train_model = DockerOperator(
+        task_id="docker-airflow-train",
         image="airflow-train-model",
         command="--input-dir /data/processed/{{ ds }} --output-dir /data/models/{{ ds }}",
-        task_id="docker-airflow-train",
         do_xcom_push=False,
         volumes=[f"{DATA_VOLUMES}:/data"]
     )
 
     validate = DockerOperator(
+        task_id="docker-airflow-validate",
         image="airflow-validate",
         command="--input-dir /data/processed/{{ ds }} --model-dir /data/models/{{ ds }}",
-        task_id="docker-airflow-validate",
         do_xcom_push=False,
         volumes=[f"{DATA_VOLUMES}:/data"]
     )

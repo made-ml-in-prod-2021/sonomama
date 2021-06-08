@@ -9,7 +9,6 @@ default_args = {
     "owner": "anya_go",
     "retries": 2,
     "retry_delay": timedelta(minutes=1),
-    "email_on_failure": False
 }
 
 DATA_VOLUMES = "/Users/anyya/Documents/data_analysis/MADE20/prod_ml_git/airflow_ml_dags/data"
