@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime
 
-from airflow import DAG
+from airflow import models, DAG
 from airflow.sensors.filesystem import FileSensor
 from airflow.providers.docker.operators.docker import DockerOperator
 
@@ -9,6 +9,9 @@ default_args = {
     "owner": "anya_go",
     "retries": 2,
     "retry_delay": timedelta(minutes=1),
+    "email": models.Variable.get("email"),
+    "email_on_failure": True,
+    "email_on_retry": True,
 }
 
 DATA_VOLUMES = "/Users/anyya/Documents/data_analysis/MADE20/prod_ml_git/airflow_ml_dags/data"

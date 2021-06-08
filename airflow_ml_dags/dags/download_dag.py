@@ -1,17 +1,17 @@
-import os
 from datetime import timedelta, datetime
 
-
-from airflow import DAG
+from airflow import DAG, models
 from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.utils.dates import days_ago
+
 
 default_args = {
     "owner": "anya_go",
     "retries": 2,
     "retry_delay": timedelta(minutes=5),
+    "email": models.Variable.get("email"),
     "email_on_failure": True,
-    "email": "anyagoremykina@gmail.com"
+    "email_on_retry": True,
 }
 
 
