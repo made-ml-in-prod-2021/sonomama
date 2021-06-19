@@ -10,4 +10,4 @@ WORKDIR .
 
 ENV PATH_TO_MODEL="/model.pkl"
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["python", "app.py"]
